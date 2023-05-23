@@ -1,0 +1,39 @@
+name: CI
+on: 
+  push:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      tag:
+        default: latest
+        description: image tag
+
+jobs:
+ build:
+    runs-on: ubuntu-latest
+    env:
+      TAG: "${{ inputs.tag != '' && inputs.tag || github.ref_name }}"
+      PUSH: "${{ (github.ref_name == 'main') && 'true' ||
+        startsWith(github.ref, 'refs/tags/v') && 'true' || 'false'}}"
+    steps:
+      - name: Check out Project
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile
+          push: ${{ env.PUSH }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/sampleapp:${{ env.TAG }}
+      
+      - name: Test
+        run: docker run --rm ${{ secrets.DOCKERHUB_USERNAME }}/sampleapp:${{ env.TAG }} python manage.py test

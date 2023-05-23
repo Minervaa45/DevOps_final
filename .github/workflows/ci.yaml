@@ -6,7 +6,7 @@ on:
       tag:
         default: latest
         description: image tag
-
+        
 jobs:
   build:
     runs-on: ubuntu-latest

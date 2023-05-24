@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  labels:
+    app: zah-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: postgres-db
+  template:
+    metadata:
+      labels:
+        deployment: postgres-db
+        app: zah-app
+    spec:
+      containers:
+        - name: postgres-container
+          image: postgres
+          envFrom:
+            - configMapRef:
+                name: app-config
+            - secretRef:
+                name: app-secret
+          resources:
+            limits:
+              memory: 4Gi
+              cpu: "2"
+          ports:
+            - containerPort: 5432

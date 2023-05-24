@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+images:
+  - name: webimage
+    newName: Minerva45/sampleapp
+    newTag: v1.0.3
+
+resources:
+  - "deployment-db.yaml"
+  - "deployment-server.yaml"
+  - "namespace.yaml"
+  - "service.yaml"
+  - "configmap.yaml"
+  - "secret.yaml"
+
+namespace: zah

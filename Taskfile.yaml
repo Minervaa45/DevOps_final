@@ -1,0 +1,20 @@
+version: '3'
+
+tasks:
+  docker-build:
+    cmds:
+      - docker build -t sampleapp:$(date +%Y%m%d%H%M%S)  .
+  docker-run:
+    cmds:
+      - docker run -it --rm sampleapp:latest
+  up:
+    cmds:
+      - docker compose up -d
+  down:
+    cmds:
+      - docker compose down
+  migrate:
+    cmds:
+      - docker compose up migrate
+  test-server:
+    curl -v http://localhost:8000 

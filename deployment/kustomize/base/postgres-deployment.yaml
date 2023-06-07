@@ -19,7 +19,7 @@ spec:
             - containerPort: 5432
           envFrom:
             - secretRef:
-                name: zah-sampleapp-secret
+                name: zah-sampleapp-postgres-secret
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: db

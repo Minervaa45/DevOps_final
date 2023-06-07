@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sampleapp-deployment
+  name: zah-sampleapp-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sampleapp
+      app: zah-sampleapp
   template:
     metadata:
       labels:
-        app: sampleapp
+        app: zah-sampleapp
     spec:
       initContainers:
         - name: sampleapp-migrate
@@ -25,7 +25,7 @@ spec:
             - manage.py
             - migrate
       containers:
-        - name: sampleapp
+        - name: zah-sampleapp
           image: minerva45/sampleapp:main
           ports:
             - containerPort: 8000

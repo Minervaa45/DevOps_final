@@ -23,7 +23,7 @@ spec:
             - '0.0.0.0:8000'
           envFrom:
             - secretRef:
-                name: sampleapp-secret
+                name: zah-sampleapp-postgres-secret
           image: 'minerva45/sampleapp:main'
           name: zah-sampleapp
           ports:
@@ -35,8 +35,8 @@ spec:
             - migrate
           envFrom:
             - secretRef:
-                name: sampleapp-secret
+                name: zah-sampleapp-postgres-secret
           image: 'minerva45/sampleapp:main'
-          name: sampleapp-migrate
+          name: zah-sampleapp-postgres-secret
           ports:
             - containerPort: 8000

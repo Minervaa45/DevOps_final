@@ -24,4 +24,16 @@ spec:
             - python
             - manage.py
             - migrate
-      
+      containers:
+        - name: sampleapp
+          image: minerva45/sampleapp:main
+          ports:
+            - containerPort: 8000
+          command: 
+            - python
+            - manage.py
+            - runserver
+            - 0.0.0.0:8000
+          envFrom:
+            - secretRef:
+                name: zah-sampleapp-postgres-secret

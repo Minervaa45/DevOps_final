@@ -13,7 +13,7 @@ spec:
         app: zah-sampleapp
     spec:
       initContainers:
-        - name: sampleapp-migrate
+        - name: zah-sampleapp-migrate
           image: minerva45/sampleapp:main
           ports:
             - containerPort: 8000

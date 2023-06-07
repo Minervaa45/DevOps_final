@@ -1,20 +1,24 @@
 version: '3'
 
 tasks:
-  docker-build:
+
+  start:
     cmds:
-      - docker build -t sampleapp:$(date +%Y%m%d%H%M%S)  .
-  docker-run:
-    cmds:
-      - docker run -it --rm sampleapp:latest
+      - task: up
+      - task: migrate
+
   up:
     cmds:
       - docker compose up -d
+
+  migrate:
+    cmds:
+      - docker compose run migrate
+
   down:
     cmds:
       - docker compose down
-  migrate:
-    cmds:
-      - docker compose up migrate
-  test-server:
-    curl -v http://localhost:8000 
+
+  stop:
+    deps:
+      - down

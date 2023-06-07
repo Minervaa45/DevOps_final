@@ -1,6 +1,11 @@
 ve
-staticfiles
 .gitignore
 README
 .git
 .idea
+/db.sqlite3
+/.venv/
+/venv/
+/ve/
+/staticfiles
+.env

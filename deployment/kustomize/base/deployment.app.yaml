@@ -5,7 +5,7 @@ metadata:
   labels:
     app: zah-sampleapp
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: zah-sampleapp
@@ -15,7 +15,7 @@ spec:
         app: zah-sampleapp
     spec:
       containers:
-        - name: final-task
+        - name: sampleapp
           image: zah-sampleapp:main
           ports:
             - name: http
@@ -30,4 +30,4 @@ spec:
               cpu: "500m"
             limits:
               memory: "500Mi"
-              cpu: "2"
+              cpu: "1"

@@ -14,7 +14,7 @@ spec:
     spec:
       initContainers:
         - name: zah-sampleapp-migrate
-          image: minerva45/sampleapp:main
+          image: minerva45/sampleapp:latest
           ports:
             - containerPort: 8000
           envFrom:
@@ -26,7 +26,7 @@ spec:
             - migrate
       containers:
         - name: zah-sampleapp
-          image: minerva45/sampleapp:main
+          image: minerva45/sampleapp:latest
           ports:
             - containerPort: 8000
           command: 

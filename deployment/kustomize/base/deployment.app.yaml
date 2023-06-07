@@ -1,11 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: zah-sampleapp-deployment-app
   labels:
-    app: zah-sampleapp
+    app.kubernetes.io/instance: zah-sampleapp
+  name: sampleapp-deployment
+  namespace: zah-sampleapp
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: zah-sampleapp
@@ -15,19 +16,27 @@ spec:
         app: zah-sampleapp
     spec:
       containers:
-        - name: sampleapp
-          image: zah-sampleapp:main
-          ports:
-            - name: http
-              containerPort: 5000
-              protocol: TCP
+        - command:
+            - python
+            - manage.py
+            - runserver
+            - '0.0.0.0:8000'
           envFrom:
             - secretRef:
-                name: zah-sampleapp-postgres-secret
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "500m"
-            limits:
-              memory: "500Mi"
-              cpu: "1"
+                name: zah-sampleapp-secret
+          image: 'sampleapp:main'
+          name: zah-sampleapp
+          ports:
+            - containerPort: 8000
+      initContainers:
+        - command:
+            - python
+            - manage.py
+            - migrate
+          envFrom:
+            - secretRef:
+                name: zah-sampleapp-secret
+          image: 'sampleapp:main'
+          name: zah-sampleapp-migrate
+          ports:
+            - containerPort: 8000

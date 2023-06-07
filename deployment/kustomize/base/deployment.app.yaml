@@ -1,42 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app.kubernetes.io/instance: zah-sampleapp
   name: sampleapp-deployment
-  namespace: zah-sampleapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: zah-sampleapp
+      app: sampleapp
   template:
     metadata:
       labels:
-        app: zah-sampleapp
+        app: sampleapp
     spec:
-      containers:
-        - command:
-            - python
-            - manage.py
-            - runserver
-            - '0.0.0.0:8000'
+      initContainers:
+        - name: sampleapp-migrate
+          image: minerva45/sampleapp:main
+          ports:
+            - containerPort: 8000
           envFrom:
             - secretRef:
                 name: zah-sampleapp-postgres-secret
-          image: 'minerva45/sampleapp:main'
-          name: zah-sampleapp
-          ports:
-            - containerPort: 8000
-      initContainers:
-        - command:
+          command:
             - python
             - manage.py
             - migrate
+      containers:
+        - name: sampleapp
+          image: minerva45/sampleapp:main
+          ports:
+            - containerPort: 8000
+          command: 
+            - python
+            - manage.py
+            - runserver
+            - 0.0.0.0:8000
           envFrom:
             - secretRef:
                 name: zah-sampleapp-postgres-secret
-          image: 'minerva45/sampleapp:main'
-          name: zah-sampleapp-postgres-secret
-          ports:
-            - containerPort: 8000

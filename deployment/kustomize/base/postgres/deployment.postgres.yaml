@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: zzah-sampleapp-postgres
+        app: zah-sampleapp-postgres
     spec:
       containers:
         - name: postgres

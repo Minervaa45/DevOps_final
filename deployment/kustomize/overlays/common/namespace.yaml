@@ -1,4 +1,4 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: zah-devops-final-task
+  name: zah-sampleapp

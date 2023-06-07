@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: zah-devops-final-task-certificate
-  namespace: zah-devops-final-task
+  name: zah-sampleapp-certificate
+  namespace: zah-sampleapp-task
 spec:
   dnsNames:
   - 'zah.dacdevops.ru'
   issuerRef:
     kind: ClusterIssuer
     name: yc-clusterissuer
-  secretName: zah-devops-final-task-cert
+  secretName: zah-sampleapp-task-cert

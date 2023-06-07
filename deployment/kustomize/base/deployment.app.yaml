@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: zah-devops-final-task-deployment-app
+  name: zah-sampleapp-deployment-app
   labels:
-    app: zah-devops-final-task
+    app: zah-sampleapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: zah-devops-final-task
+      app: zah-sampleapp
   template:
     metadata:
       labels:
-        app: zah-devops-final-task
+        app: zah-sampleapp
     spec:
       containers:
         - name: final-task
-          image: zah/final_task_app:main
+          image: zah-sampleapp:main
           ports:
             - name: http
               containerPort: 5000
               protocol: TCP
           envFrom:
             - secretRef:
-                name: zah-devops-final-task-postgres-secret
+                name: zah-sampleapp-postgres-secret
           resources:
             requests:
               memory: "256Mi"

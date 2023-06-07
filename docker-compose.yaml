@@ -2,40 +2,40 @@
 
 services:
   sampleapp:
+    image: sampleapp:latest
     restart: always
-    image: sampleapp
     build:
       context: .
-      dockerfile: Dockerfile
     ports:
-      - 8080:8080
+      - 8000:8000
     tty: true
-    environment:
-      PYTHONUNBUFFERED: 1
-      
     env_file:
       - .env
-    command: 
-      - python manage.py runserver 0.0.0.0:8000
-     
+    command:
+      - runserver 0.0.0.0:8000
+    depends_on:
+      - db
+
   migrate:
-    restart: never
     image: sampleapp:latest
     profiles:
       - migrate
     tty: true
-    environment:
-      PYTHONUNBUFFERED: 1
     env_file:
       - .env
     command: 
-      - python manage.py migrate
+      - migrate
+
   db:
     image: postgres:15.2
     restart: always
     env_file:
       - .env
-    
+    volumes:
+      - database:/var/lib/postgresql/data
+
+volumes:
+  database:
 
    
 

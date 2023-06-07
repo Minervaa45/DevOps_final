@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: zah-sampleapp
 
 resources:
-  - ../base
+  - ../../base
   - certificate.yaml
   - namespace.yaml
 

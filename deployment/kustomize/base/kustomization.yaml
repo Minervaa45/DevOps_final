@@ -1,13 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:
-  - deployment.yaml
-  - service.yaml
-  - postgres-deployment.yaml
-  - postgres-service.yaml
-  - secret.yaml
-  - ingress.yaml
+commonLabels:
+  app: zah-devops-final-task
 
-images:
-  - name: zah/sampleapp
+resources:
+- service.yaml
+- deployment.app.yaml
+- secret.yaml
+- ./postgres

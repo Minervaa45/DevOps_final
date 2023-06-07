@@ -24,7 +24,7 @@ spec:
           envFrom:
             - secretRef:
                 name: zah-sampleapp-secret
-          image: 'sampleapp:main'
+          image: 'minerva45/sampleapp:main'
           name: zah-sampleapp
           ports:
             - containerPort: 8000
@@ -36,7 +36,7 @@ spec:
           envFrom:
             - secretRef:
                 name: zah-sampleapp-secret
-          image: 'sampleapp:main'
+          image: 'minerva45/sampleapp:main'
           name: zah-sampleapp-migrate
           ports:
             - containerPort: 8000

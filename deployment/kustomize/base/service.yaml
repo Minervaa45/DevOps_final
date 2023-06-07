@@ -1,16 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-service
+  name: zah-final-task-service
 spec:
-  selector:
-    app: zah-app
   ports:
-    - name: web
+    - name: http
       port: 8000
-      targetPort: 8000
-    - name: db
-      port: 5432
       protocol: TCP
-      targetPort: 5432
-  type: ClusterIP
+      targetPort: 8000
+  selector:
+    app: zah-devops-final-task
+  type: NodePort

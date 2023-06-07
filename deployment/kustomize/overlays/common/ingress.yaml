@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: app-ingress
+  name: zah-final-task-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
@@ -13,10 +13,10 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: app-service
+                name: zah-final-task-service
                 port:
-                  name: web
+                  name: http
   tls:
     - hosts:
       - zah.dacdevops.ru
-      secretName: zah-cert
+      secretName: zah-final-task-cert

@@ -6,7 +6,7 @@ commonLabels:
 
 images:
   - name: final-task
-    newName: zah-sampleapp/zah-sampleapp_app:main
+    newName: minerva45/sampleapp:main
     newTag: v1.1.0
 
 resources:

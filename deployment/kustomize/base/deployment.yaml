@@ -33,7 +33,7 @@ spec:
             - python
             - manage.py
             - runserver
-            - 0.0.0.0:8000
+            - 0.0.0.0:8001
           envFrom:
             - secretRef:
                 name: zah-sampleapp-postgres-secret

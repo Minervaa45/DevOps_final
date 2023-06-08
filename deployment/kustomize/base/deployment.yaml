@@ -20,13 +20,16 @@ spec:
           envFrom:
             - secretRef:
                 name: zah-sampleapp-postgres-secret
-          
+          command:
+            - migrate
       containers:
         - name: zah-sampleapp
           image: minerva45/sampleapp:latest
           ports:
             - containerPort: 8000
-          
+          command: 
+            - runserver
+
           envFrom:
             - secretRef:
                 name: zah-sampleapp-postgres-secret

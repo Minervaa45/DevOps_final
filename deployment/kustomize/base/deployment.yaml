@@ -21,6 +21,8 @@ spec:
             - secretRef:
                 name: zah-sampleapp-postgres-secret
           command:
+            - python
+            - manage.py
             - migrate
       containers:
         - name: zah-sampleapp
@@ -28,8 +30,10 @@ spec:
           ports:
             - containerPort: 8000
           command: 
+            - python
+            - manage.py
             - runserver
-
+            - 0.0.0.0:8000
           envFrom:
             - secretRef:
                 name: zah-sampleapp-postgres-secret

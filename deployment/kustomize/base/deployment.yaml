@@ -16,7 +16,7 @@ spec:
         - name: zah-sampleapp-migrate
           image: minerva45/sampleapp:latest
           ports:
-            - containerPort: 8000
+            - containerPort: 8001
           envFrom:
             - secretRef:
                 name: zah-sampleapp-postgres-secret
@@ -28,7 +28,7 @@ spec:
         - name: zah-sampleapp
           image: minerva45/sampleapp:latest
           ports:
-            - containerPort: 8000
+            - containerPort: 8001
           command: 
             - python
             - manage.py

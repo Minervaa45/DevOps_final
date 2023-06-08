@@ -87,6 +87,13 @@ POSTGRES_USER = os.environ.get("POSTGRES_USER") # database username
 POSTGRES_HOST = os.environ.get("POSTGRES_HOST") # database host
 POSTGRES_PORT = os.environ.get("POSTGRES_PORT") # database port
 
+# print(POSTGRES_DB)
+# print(POSTGRES_PASSWORD)
+# print(POSTGRES_USER)
+# print(POSTGRES_HOST)
+# print(POSTGRES_PORT)
+
+
 POSTGRES_READY = (
     POSTGRES_DB is not None
     and POSTGRES_PASSWORD is not None

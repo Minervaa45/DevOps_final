@@ -20,7 +20,7 @@ spec:
           envFrom:
             - secretRef:
                 name: zah-sampleapp-postgres-secret
-          command:
+          args:
             - python
             - manage.py
             - migrate
@@ -29,7 +29,7 @@ spec:
           image: minerva45/sampleapp:main
           ports:
             - containerPort: 8000
-          command: 
+          args: 
             - python
             - manage.py
             - runserver
